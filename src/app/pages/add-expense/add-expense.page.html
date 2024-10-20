@@ -4,22 +4,43 @@
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
     <ion-title>Agregar Gasto</ion-title>
+    <ion-button slot="end" expand="full" type="submit">Guardar</ion-button>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
   <form (submit)="addExpense()">
-    <ion-item>
+    <ion-item class="ion-padding">
       <ion-label position="floating">Descripción</ion-label>
       <ion-input [(ngModel)]="description" name="description"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="ion-padding">
       <ion-label position="floating">Monto</ion-label>
       <ion-input [(ngModel)]="amount" type="number" name="amount"></ion-input>
     </ion-item>
 
-    <ion-button expand="full" type="submit">Guardar</ion-button>
+    <ion-item class="ion-padding">
+      <ion-label>Categoría</ion-label>
+      <ion-select
+        [(ngModel)]="category"
+        name="category"
+        placeholder="Seleccionar categoría">
+        <ion-select-option value="Alimentación">Alimentación</ion-select-option>
+        <ion-select-option value="Transporte">Transporte</ion-select-option>
+        <ion-select-option value="Vivienda">Vivienda</ion-select-option>
+        <ion-select-option value="Ocio">Ocio</ion-select-option>
+        <ion-select-option value="Otros">Otros</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="ion-padding">
+      <ion-label>Fecha</ion-label>
+      <ion-datetime
+        [(ngModel)]="date"
+        name="date"
+        display-format="DD/MM/YYYY" 
+        placeholder="Seleccionar fecha"></ion-datetime>
+    </ion-item>
   </form>
 </ion-content>

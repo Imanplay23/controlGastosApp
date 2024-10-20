@@ -1,13 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Resumen de Gastos</ion-title>
+    <ion-title>Resumen de Gastos</ion-title> 
+    <ion-button class="ion-padding" slot="end" routerLink="/add-expense">
+      <ion-icon size="large" name="add-circle-sharp"></ion-icon>
+  </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button expand="full" routerLink="/add-expense">
-    Agregar Gasto
-  </ion-button>
-
-      <app-expense-summary></app-expense-summary>
+    <app-expense-summary></app-expense-summary>
 </ion-content>

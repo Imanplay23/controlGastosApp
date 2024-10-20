@@ -9,21 +9,24 @@ import { Expense } from 'src/app/interfaces/expense';
 })
 export class AddExpensePage {
   description: string = '';
-  amount: number = 0;
+  amount: number | null = null;
+  date: string = '';
+  category: string = '';
 
   constructor(private router: Router) {}
 
   addExpense() {
-    const newExpense: Expense = {
-      description: this.description,
-      amount: this.amount
-    };
-
-
-    if (!this.description || this.amount === null || this.amount <= 0) {
-      alert('Por favor, ingresa una descripción y un monto válido.');
+    if (!this.description || this.amount === null || this.amount <= 0 || !this.date || !this.category) {
+      alert('Por favor, completa todos los campos correctamente.');
       return;
     }
+
+    const newExpense: Expense = {
+      description: this.description,
+      amount: this.amount,
+      date: this.date,
+      category: this.category
+    };
 
     let expenses = JSON.parse(localStorage.getItem('expenses') || '[]');
     expenses.push(newExpense);
