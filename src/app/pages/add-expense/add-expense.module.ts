@@ -15,6 +15,7 @@ import { AddExpensePage } from './add-expense.page';
     IonicModule,
     AddExpensePageRoutingModule
   ],
-  declarations: [AddExpensePage]
+  declarations: [AddExpensePage],
+  exports: [AddExpensePage]
 })
 export class AddExpensePageModule {}

@@ -1,3 +1,8 @@
-<p>
-  expense-summary works!
-</p>
+<ion-list>
+  <ion-item *ngFor="let expense of expenses">
+    <ion-label>
+      <h2>{{ expense.description }}</h2>
+      <p>{{ expense.amount | currency }}</p>
+    </ion-label>
+  </ion-item>
+</ion-list>

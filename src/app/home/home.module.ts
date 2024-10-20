@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { AddExpensePage } from '../pages/add-expense/add-expense.page';
+import { AddExpensePageModule } from '../pages/add-expense/add-expense.module';
+import { ExpenseSummaryModule } from '../components/expense-summary/expense-summary.module';
 
 
 @NgModule({
@@ -12,7 +15,9 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    AddExpensePageModule,
+    ExpenseSummaryModule
   ],
   declarations: [HomePage]
 })

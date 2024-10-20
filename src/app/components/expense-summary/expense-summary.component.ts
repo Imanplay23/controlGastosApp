@@ -5,10 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './expense-summary.component.html',
   styleUrls: ['./expense-summary.component.scss'],
 })
-export class ExpenseSummaryComponent  implements OnInit {
+export class ExpenseSummaryComponent implements OnInit {
+  expenses: any[] = [];
 
-  constructor() { }
+  ngOnInit() {
+    this.loadExpenses();
+  }
 
-  ngOnInit() {}
-
+  loadExpenses() {
+    const storedExpenses = JSON.parse(localStorage.getItem('expenses') || '[]');
+    this.expenses = storedExpenses;
+  }
 }
