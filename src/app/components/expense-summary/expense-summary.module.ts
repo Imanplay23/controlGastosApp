@@ -4,6 +4,7 @@ import { ExpenseSummaryComponent } from './expense-summary.component';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { AddExpensePageModule } from 'src/app/pages/add-expense/add-expense.module';
+import { ExpenseListPageModule } from 'src/app/pages/expense-list/expense-list.module';
 
 
 
@@ -14,6 +15,7 @@ import { AddExpensePageModule } from 'src/app/pages/add-expense/add-expense.modu
     FormsModule,
     IonicModule,
     AddExpensePageModule,
+    ExpenseListPageModule
   ],
 
   exports: [ExpenseSummaryComponent]

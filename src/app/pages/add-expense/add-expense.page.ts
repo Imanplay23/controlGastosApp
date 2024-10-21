@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Expense } from 'src/app/interfaces/expense';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-expense',
@@ -13,11 +14,20 @@ export class AddExpensePage {
   date: string = '';
   category: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private alertController: AlertController) {}
 
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Campos obligatorios',
+      message: 'Rellene todos los campos.',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
   addExpense() {
     if (!this.description || this.amount === null || this.amount <= 0 || !this.date || !this.category) {
-      alert('Por favor, completa todos los campos correctamente.');
+      this.presentAlert()
       return;
     }
 
