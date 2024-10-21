@@ -8,13 +8,12 @@ import { ExpenseService } from 'src/app/services/expense.service';
 })
 export class ExpenseSummaryComponent implements OnInit {
   totalSpent: number = 0;
-  budget: number = 1000;
+  budget: number = 0;
   availableBalance: number = 0;
 
   constructor(private expenseService: ExpenseService) {}
 
   ngOnInit() {
-    // Suscribirse a los valores del servicio
     this.expenseService.totalSpent$.subscribe(total => {
       this.totalSpent = total;
     });

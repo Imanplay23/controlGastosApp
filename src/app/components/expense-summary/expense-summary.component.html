@@ -1,10 +1,11 @@
-<ion-card>
+<ion-card class="ion-padding">
   <ion-card-content>
     <ion-item>
-      <ion-label>Presupuesto Total:</ion-label>
+      <ion-label>Presupuesto:</ion-label> 
       <ion-input [(ngModel)]="budget" type="number" placeholder="Ingresa tu presupuesto"></ion-input>
+      <ion-button (click)="saveBudget()"><ion-icon size="large" name="save-sharp"></ion-icon></ion-button>
     </ion-item>
-    <ion-button expand="block" (click)="saveBudget()">Guardar Presupuesto</ion-button>
+    
 
     <ion-item>
       <ion-label>Total Gastado:</ion-label>

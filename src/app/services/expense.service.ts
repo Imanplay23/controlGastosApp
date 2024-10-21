@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ExpenseService {
   private expenses: any[] = [];
   private totalSpentSubject = new BehaviorSubject<number>(0);
-  private budgetSubject = new BehaviorSubject<number>(1000);  // Valor por defecto
+  private budgetSubject = new BehaviorSubject<number>(0);
   private availableBalanceSubject = new BehaviorSubject<number>(0);
 
   totalSpent$ = this.totalSpentSubject.asObservable();
