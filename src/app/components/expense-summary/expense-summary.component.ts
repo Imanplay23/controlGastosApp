@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
   selector: 'app-expense-summary',
@@ -6,40 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./expense-summary.component.scss'],
 })
 export class ExpenseSummaryComponent implements OnInit {
-  expenses: any[] = [];
   totalSpent: number = 0;
   budget: number = 1000;
   availableBalance: number = 0;
 
-  ngOnInit() {
-    this.loadBudget();
-    this.loadExpenses();
-    this.calculateTotals();
-  }
+  constructor(private expenseService: ExpenseService) {}
 
-  loadBudget() {
-    const storedBudget = localStorage.getItem('budget');
-    this.budget = storedBudget ? parseFloat(storedBudget) : 1000;
+  ngOnInit() {
+    // Suscribirse a los valores del servicio
+    this.expenseService.totalSpent$.subscribe(total => {
+      this.totalSpent = total;
+    });
+
+    this.expenseService.budget$.subscribe(budget => {
+      this.budget = budget;
+    });
+
+    this.expenseService.availableBalance$.subscribe(balance => {
+      this.availableBalance = balance;
+    });
   }
 
   saveBudget() {
-    localStorage.setItem('budget', this.budget.toString());
-    this.calculateTotals();
-  }
-
-  loadExpenses() {
-    const storedExpenses = JSON.parse(localStorage.getItem('expenses') || '[]');
-    this.expenses = storedExpenses;
-    this.calculateTotals();
-  }
-
-  calculateTotals() {
-    this.totalSpent = this.expenses.reduce((sum, expense) => sum + expense.amount, 0);
-    this.availableBalance = this.budget - this.totalSpent;
-  }
-
-  refreshData() {
-    this.loadExpenses();
-    this.calculateTotals();
+    this.expenseService.setBudget(this.budget);
   }
 }

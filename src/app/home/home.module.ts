@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
-import { AddExpensePage } from '../pages/add-expense/add-expense.page';
 import { AddExpensePageModule } from '../pages/add-expense/add-expense.module';
 import { ExpenseSummaryModule } from '../components/expense-summary/expense-summary.module';
 import { ExpenseListPageModule } from "../pages/expense-list/expense-list.module";
@@ -19,7 +18,7 @@ import { ExpenseListPageModule } from "../pages/expense-list/expense-list.module
     HomePageRoutingModule,
     AddExpensePageModule,
     ExpenseSummaryModule,
-    ExpenseListPageModule
+    ExpenseListPageModule,
 ],
   declarations: [HomePage]
 })

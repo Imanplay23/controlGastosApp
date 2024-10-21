@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Expense } from 'src/app/interfaces/expense';
 import { AlertController } from '@ionic/angular';
-import { ExpenseSummaryComponent } from 'src/app/components/expense-summary/expense-summary.component';
+import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
   selector: 'app-add-expense',
@@ -15,29 +15,11 @@ export class AddExpensePage {
   date: string = '';
   category: string = '';
 
-  constructor(
-    private router: Router, 
-    private alertController: AlertController,
-    private summaryComponent: ExpenseSummaryComponent
-  ) {}
-
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Campos obligatorios',
-      message: 'Rellene todos los campos.',
-      buttons: ['OK'],
-    });
-
-    await alert.present();
-  }
-
-  generateUniqueId(): string {
-    return Math.random().toString(36).substr(2, 9);
-  }
+  constructor(private router: Router, private expenseService: ExpenseService) {}
 
   addExpense() {
     if (!this.description || this.amount === null || this.amount <= 0 || !this.date || !this.category) {
-      this.presentAlert()
+      alert('Por favor, completa todos los campos correctamente.');
       return;
     }
 
@@ -49,11 +31,11 @@ export class AddExpensePage {
       category: this.category
     };
 
-    let expenses = JSON.parse(localStorage.getItem('expenses') || '[]');
-    expenses.push(newExpense);
-    localStorage.setItem('expenses', JSON.stringify(expenses));
-
-    this.summaryComponent.refreshData();
+    this.expenseService.addExpense(newExpense);
     this.router.navigateByUrl('/home');
+  }
+
+  generateUniqueId(): string {
+    return Math.random().toString(36).substr(2, 9);
   }
 }

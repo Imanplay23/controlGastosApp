@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ExpenseSummaryComponent } from 'src/app/components/expense-summary/expense-summary.component';
+import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
   selector: 'app-expense-list',
@@ -9,22 +9,14 @@ import { ExpenseSummaryComponent } from 'src/app/components/expense-summary/expe
 export class ExpenseListPage implements OnInit {
   expenses: any[] = [];
 
-  constructor( private summaryComponent: ExpenseSummaryComponent){}
+  constructor(private expenseService: ExpenseService) {}
 
   ngOnInit() {
-    this.loadExpenses();
-  }
-
-  loadExpenses() {
-    const storedExpenses = JSON.parse(localStorage.getItem('expenses') || '[]');
-    this.expenses = storedExpenses;
+    this.expenses = this.expenseService.getExpenses();
   }
 
   deleteExpense(id: string) {
-    this.expenses = this.expenses.filter(expense => expense.id !== id);
-    localStorage.setItem('expenses', JSON.stringify(this.expenses));
-
-    this.summaryComponent.refreshData();
+    this.expenseService.deleteExpense(id);
+    this.expenses = this.expenseService.getExpenses();
   }
 }
-
