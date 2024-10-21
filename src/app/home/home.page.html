@@ -1,12 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Resumen de Gastos</ion-title> 
-    <ion-button class="ion-padding" slot="end" routerLink="/add-expense">
+    <ion-title>Lista de Gastos</ion-title> 
+    <ion-button slot="end" routerLink="/add-expense">
+      add expense
       <ion-icon size="large" name="add-circle-sharp"></ion-icon>
   </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <app-expense-summary></app-expense-summary>
+    <app-expense-list></app-expense-list>
+    <ion-header>
+  <ion-toolbar>
+    <ion-title>Resumen de gastos</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-item>
+  <app-expense-summary></app-expense-summary>
+</ion-item>
 </ion-content>
+

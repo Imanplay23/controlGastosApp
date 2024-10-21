@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Expense } from 'src/app/interfaces/expense';
 import { AlertController } from '@ionic/angular';
+import { ExpenseSummaryComponent } from 'src/app/components/expense-summary/expense-summary.component';
 
 @Component({
   selector: 'app-add-expense',
@@ -14,7 +15,11 @@ export class AddExpensePage {
   date: string = '';
   category: string = '';
 
-  constructor(private router: Router, private alertController: AlertController) {}
+  constructor(
+    private router: Router, 
+    private alertController: AlertController,
+    private summaryComponent: ExpenseSummaryComponent
+  ) {}
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -25,6 +30,11 @@ export class AddExpensePage {
 
     await alert.present();
   }
+
+  generateUniqueId(): string {
+    return Math.random().toString(36).substr(2, 9);
+  }
+
   addExpense() {
     if (!this.description || this.amount === null || this.amount <= 0 || !this.date || !this.category) {
       this.presentAlert()
@@ -32,6 +42,7 @@ export class AddExpensePage {
     }
 
     const newExpense: Expense = {
+      id: this.generateUniqueId(),
       description: this.description,
       amount: this.amount,
       date: this.date,
@@ -42,6 +53,7 @@ export class AddExpensePage {
     expenses.push(newExpense);
     localStorage.setItem('expenses', JSON.stringify(expenses));
 
+    this.summaryComponent.refreshData();
     this.router.navigateByUrl('/home');
   }
 }

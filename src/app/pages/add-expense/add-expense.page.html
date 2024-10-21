@@ -35,23 +35,31 @@
       </ion-select>
     </ion-item>
 
-    <!-- <ion-item>
+    <!-- <ion-item class="ion-padding">
       <ion-label>Fecha</ion-label>
       <ion-datetime-button datetime="datetime"></ion-datetime-button>
-      <ion-modal keepContentsMounted="true">
+      <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime id="datetime" [(ngModel)]="date" name="date" presentation="date" show-default-buttons="true"></ion-datetime>
+          <ion-datetime 
+              [(ngModel)]="date"
+              [showDefaultButtons]="true"
+              name="datetime" 
+              id="datetime"
+              minuteValues="0,,10,20,30,40,50,60"
+              display-format="DD/MM/YYYY">
+          </ion-datetime>
         </ng-template>
       </ion-modal>
     </ion-item> -->
-    <ion-item>
+    <ion-item class="ion-padding" id="fecha">
       <ion-label>Fecha</ion-label>
             <ion-datetime
               [(ngModel)]="date"
               name="datetime" 
               id="datetime"
               minuteValues="0,5,10,15,20,25,30,35,40,45,50,55,60"
-              display-format="DD/MM/YYYY"></ion-datetime>
+              display-format="DD/MM/YYYY"
+              ></ion-datetime>
     </ion-item>
     <ion-button slot="end" expand="full" type="submit">Guardar</ion-button>
   </form>

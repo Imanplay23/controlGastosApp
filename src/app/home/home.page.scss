@@ -35,9 +35,11 @@ ion-content {
 }
 
 ion-button {
-  margin: 16px 0;
+ margin-right: 15px;
+ padding: 5px;
 }
 
 app-expense-summary {
   width: 100%;
+  padding: auto;
 }

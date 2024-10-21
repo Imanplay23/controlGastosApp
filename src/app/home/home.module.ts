@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { AddExpensePage } from '../pages/add-expense/add-expense.page';
 import { AddExpensePageModule } from '../pages/add-expense/add-expense.module';
 import { ExpenseSummaryModule } from '../components/expense-summary/expense-summary.module';
+import { ExpenseListPageModule } from "../pages/expense-list/expense-list.module";
 
 
 @NgModule({
@@ -17,8 +18,9 @@ import { ExpenseSummaryModule } from '../components/expense-summary/expense-summ
     IonicModule,
     HomePageRoutingModule,
     AddExpensePageModule,
-    ExpenseSummaryModule
-  ],
+    ExpenseSummaryModule,
+    ExpenseListPageModule
+],
   declarations: [HomePage]
 })
 export class HomePageModule {}
