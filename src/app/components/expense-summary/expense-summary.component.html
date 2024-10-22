@@ -18,10 +18,7 @@
       <ion-text>{{ budget | currency }}</ion-text>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Total Gastado:</ion-label>
-      <ion-text>{{ totalSpent | currency }}</ion-text>
-    </ion-item>
+
 
     <ion-item>
       <ion-label>Saldo Disponible:</ion-label>
@@ -29,7 +26,12 @@
     </ion-item>
 
     <ion-item>
-      <ion-label></ion-label> 
+      <ion-label>Total Gastado:</ion-label>
+      <ion-text>{{ totalSpent | currency }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Establecer presupuesto:</ion-label> 
       <ion-input [(ngModel)]="budget" type="number" placeholder="Ingresa tu presupuesto"></ion-input>
       <ion-button 
       expand="full" (click)="saveBudget()">
@@ -37,5 +39,6 @@
         <ion-icon size="medium" slot="end" name="save-sharp"></ion-icon>
       </ion-button>
     </ion-item>
+
   </ion-card-content>
 </ion-card>
