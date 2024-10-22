@@ -1,11 +1,22 @@
 <ion-card class="ion-padding">
   <ion-card-content>
+    <!-- <ion-item>
+
+      <ion-button 
+      slot="end" 
+      expand="full" 
+      fill="outline"
+      (click)="enableEdit()" 
+      [disabled]="isEditing">>
+      Edit
+        <ion-icon size="medium" slot="end" name="create"></ion-icon>
+      </ion-button> 
+    </ion-item> -->
+
     <ion-item>
-      <ion-label>Presupuesto:</ion-label> 
-      <ion-input [(ngModel)]="budget" type="number" placeholder="Ingresa tu presupuesto"></ion-input>
-      <ion-button (click)="saveBudget()"><ion-icon size="large" name="save-sharp"></ion-icon></ion-button>
+      <ion-label>Presupuesto:</ion-label>
+      <ion-text>{{ budget | currency }}</ion-text>
     </ion-item>
-    
 
     <ion-item>
       <ion-label>Total Gastado:</ion-label>
@@ -15,6 +26,16 @@
     <ion-item>
       <ion-label>Saldo Disponible:</ion-label>
       <ion-text [color]="availableBalance >= 0 ? 'success' : 'danger'">{{ availableBalance | currency }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label></ion-label> 
+      <ion-input [(ngModel)]="budget" type="number" placeholder="Ingresa tu presupuesto"></ion-input>
+      <ion-button 
+      expand="full" (click)="saveBudget()">
+      Save
+        <ion-icon size="medium" slot="end" name="save-sharp"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-card-content>
 </ion-card>

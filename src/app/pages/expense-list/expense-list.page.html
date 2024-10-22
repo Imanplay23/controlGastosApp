@@ -2,8 +2,10 @@
   <ion-item *ngFor="let expense of expenses">
     <ion-label>
       <h2>{{ expense.description }}</h2>
-      <p>{{ expense.amount | currency }}</p>
-      <p>{{ expense.category }} | {{ expense.date | date: 'dd/MM/yyyy' }}</p>
+      <p>Monto: {{ expense.amount | currency }}</p>
+      <p>Categoria: {{ expense.category }}</p>
+      <p>Fecha: {{ expense.date | date: 'dd/MM/yyyy' }}</p>
+      <p>Hora: {{ expense.date | date: 'hh:mm a'}}</p>
     </ion-label>
     <ion-button color="danger" (click)="deleteExpense(expense.id)">
       <ion-icon size="large" name="trash-sharp"></ion-icon>
