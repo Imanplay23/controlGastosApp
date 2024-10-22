@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Lista de Gastos</ion-title> 
-    <ion-button slot="end" routerLink="/add-expense">
+    <ion-button (click)="onAddExpense()" slot="end" routerLink="/add-expense">
       Add expense
       <ion-icon size="large" name="add-circle-sharp"></ion-icon>
   </ion-button>

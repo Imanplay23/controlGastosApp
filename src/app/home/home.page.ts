@@ -18,19 +18,21 @@ export class HomePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.checkBudget();
-  }
-
-  checkBudget() {
-    this.expenseService.budget$.subscribe((budget) => {
+    this.expenseService.budget$.subscribe(budget => {
       this.budget = budget;
-      if (!this.budget || this.budget <= 0) {
-        this.showBudgetAlert();
-      }
     });
   }
 
-  async showBudgetAlert() {
+  async onAddExpense() {
+    if (!this.budget || this.budget <= 0) {
+      await this.showNoBudgetAlert();
+      return;
+    }
+
+    this.router.navigateByUrl('/add-expense');
+  }
+
+  async showNoBudgetAlert() {
     const alert = await this.alertController.create({
       header: 'Presupuesto no establecido',
       message: 'Debes establecer un presupuesto antes de agregar gastos.',
@@ -42,7 +44,7 @@ export class HomePage implements OnInit {
           },
         },
       ],
-      backdropDismiss: false,
+      backdropDismiss: false
     });
 
     await alert.present();

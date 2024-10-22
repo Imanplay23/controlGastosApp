@@ -7,27 +7,25 @@ import { ExpenseService } from 'src/app/services/expense.service';
   styleUrls: ['./expense-summary.component.scss'],
 })
 export class ExpenseSummaryComponent implements OnInit {
-  totalSpent: number = 0;
   budget: number = 0;
   availableBalance: number = 0;
+  totalSpent: number = 0;
 
   constructor(private expenseService: ExpenseService) {}
 
   ngOnInit() {
-    this.expenseService.totalSpent$.subscribe(total => {
-      this.totalSpent = total;
-    });
-
     this.expenseService.budget$.subscribe(budget => {
       this.budget = budget;
+      this.updateAvailableBalance();
     });
 
-    this.expenseService.availableBalance$.subscribe(balance => {
-      this.availableBalance = balance;
+    this.expenseService.expenses$.subscribe(expenses => {
+      this.totalSpent = expenses.reduce((acc, exp) => acc + exp.amount, 0);
+      this.updateAvailableBalance();
     });
   }
 
-  saveBudget() {
-    this.expenseService.setBudget(this.budget);
+  updateAvailableBalance() {
+    this.availableBalance = this.budget - this.totalSpent;
   }
 }

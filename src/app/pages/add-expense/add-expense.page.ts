@@ -15,11 +15,25 @@ export class AddExpensePage {
   date: string = '';
   category: string = '';
 
-  constructor(private router: Router, private expenseService: ExpenseService) {}
+  constructor(
+    private router: Router, 
+    private expenseService: ExpenseService,
+    private alertController: AlertController
+  ) {}
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Campos obligatorios',
+      message: 'Rellene todos los campos.',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
 
   addExpense() {
     if (!this.description || this.amount === null || this.amount <= 0 || !this.date || !this.category) {
-      alert('Por favor, completa todos los campos correctamente.');
+      this.presentAlert()
       return;
     }
 

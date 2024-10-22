@@ -1,58 +1,60 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Expense } from '../interfaces/expense';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ExpenseService {
-  private expenses: any[] = [];
-  private totalSpentSubject = new BehaviorSubject<number>(0);
-  private budgetSubject = new BehaviorSubject<number>(0);
-  private availableBalanceSubject = new BehaviorSubject<number>(0);
+  private expenses: Expense[] = [];
+  private expensesSubject = new BehaviorSubject<Expense[]>([]);
+  expenses$ = this.expensesSubject.asObservable();
 
-  totalSpent$ = this.totalSpentSubject.asObservable();
+  private budget: number = 0;
+  private budgetSubject = new BehaviorSubject<number>(0);
   budget$ = this.budgetSubject.asObservable();
-  availableBalance$ = this.availableBalanceSubject.asObservable();
 
   constructor() {
     this.loadExpenses();
-    this.calculateTotals();
+    this.loadBudget();
   }
 
-  private loadExpenses() {
-    const storedExpenses = JSON.parse(localStorage.getItem('expenses') || '[]');
-    this.expenses = storedExpenses;
-    this.calculateTotals();
+  loadExpenses() {
+    const storedExpenses = localStorage.getItem('expenses');
+    if (storedExpenses) {
+      this.expenses = JSON.parse(storedExpenses);
+      this.expensesSubject.next(this.expenses);
+    }
   }
 
-  private calculateTotals() {
-    const totalSpent = this.expenses.reduce((sum, expense) => sum + expense.amount, 0);
-    const budget = this.budgetSubject.value;
-    const availableBalance = budget - totalSpent;
-
-    this.totalSpentSubject.next(totalSpent);
-    this.availableBalanceSubject.next(availableBalance);
+  loadBudget() {
+    const storedBudget = localStorage.getItem('budget');
+    if (storedBudget) {
+      this.budget = parseFloat(storedBudget);
+      this.budgetSubject.next(this.budget);
+    }
   }
 
-  getExpenses() {
-    return this.expenses;
+  setBudget(amount: number) {
+    this.budget = amount;
+    this.budgetSubject.next(this.budget);
+    localStorage.setItem('budget', amount.toString());
   }
 
-  addExpense(expense: any) {
+  addExpense(expense: Expense) {
     this.expenses.push(expense);
+    this.expensesSubject.next(this.expenses);
     localStorage.setItem('expenses', JSON.stringify(this.expenses));
-    this.calculateTotals();
   }
 
-  deleteExpense(id: string) {
-    this.expenses = this.expenses.filter(expense => expense.id !== id);
+  removeExpense(id: string) {
+    this.expenses = this.expenses.filter(exp => exp.id !== id);
+    this.expensesSubject.next(this.expenses);
     localStorage.setItem('expenses', JSON.stringify(this.expenses));
-    this.calculateTotals();
   }
 
-  setBudget(budget: number) {
-    this.budgetSubject.next(budget);
-    localStorage.setItem('budget', budget.toString());
-    this.calculateTotals();
+  getAvailableBalance(): number {
+    const totalSpent = this.expenses.reduce((acc, expense) => acc + expense.amount, 0);
+    return this.budget - totalSpent;
   }
 }
