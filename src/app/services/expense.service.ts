@@ -58,6 +58,14 @@ export class ExpenseService {
     localStorage.setItem('expenses', JSON.stringify(this.expenses));
   }
 
+  updateExpense(updatedExpense: Expense) {
+    const index = this.expenses.findIndex(exp => exp.id === updatedExpense.id);
+    if (index !== -1) {
+      this.expenses[index] = updatedExpense;
+      this.expensesSubject.next(this.expenses);
+    }
+  }
+
   deleteExpense(id: string) {
     this.expenses = this.expenses.filter(exp => exp.id !== id);
     this.expensesSubject.next(this.expenses);

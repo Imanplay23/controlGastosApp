@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Expense } from 'src/app/interfaces/expense';
 import { AlertController } from '@ionic/angular';
 import { ExpenseService } from 'src/app/services/expense.service';
@@ -9,17 +9,28 @@ import { ExpenseService } from 'src/app/services/expense.service';
   templateUrl: './add-expense.page.html',
   styleUrls: ['./add-expense.page.scss'],
 })
-export class AddExpensePage {
+export class AddExpensePage implements OnInit {
   description: string = '';
   amount: number | null = null;
   date: string = '';
   category: string = '';
+  expense: Expense = { id: '', description: '', amount: 0, date: new Date().toISOString(), category: '' };
+  isEditing: boolean = false;
 
   constructor(
     private router: Router, 
+    private route: ActivatedRoute,
     private expenseService: ExpenseService,
     private alertController: AlertController
   ) {}
+
+  ngOnInit(): void {
+    const expenseToEdit = this.route.snapshot.paramMap.get('expenseToEdit');
+    if (expenseToEdit) {
+      this.expense = JSON.parse(expenseToEdit);
+      this.isEditing = true;
+    }
+  }
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -32,21 +43,14 @@ export class AddExpensePage {
   }
 
   addExpense() {
-    if (!this.description || this.amount === null || this.amount <= 0 || !this.date || !this.category) {
-      this.presentAlert()
-      return;
+    if (this.isEditing) {
+      this.expenseService.updateExpense(this.expense);
+    } else {
+      this.expense.id = this.generateUniqueId();
+      this.expenseService.addExpense(this.expense);
     }
-
-    const newExpense: Expense = {
-      id: this.generateUniqueId(),
-      description: this.description,
-      amount: this.amount,
-      date: this.date,
-      category: this.category
-    };
-
-    this.expenseService.addExpense(newExpense);
-    this.router.navigateByUrl('/home');
+    
+    this.router.navigate(['/home']);
   }
 
   generateUniqueId(): string {

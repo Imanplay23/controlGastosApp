@@ -11,19 +11,19 @@
 <ion-content>
   <form (submit)="addExpense()">
     <ion-item class="ion-padding">
-      <ion-label position="floating">Descripción</ion-label>
-      <ion-input [(ngModel)]="description" name="description"></ion-input>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-input [(ngModel)]="expense.description" name="description" required></ion-input>
     </ion-item>
 
     <ion-item class="ion-padding">
-      <ion-label position="floating">Monto</ion-label>
-      <ion-input [(ngModel)]="amount" type="number" name="amount"></ion-input>
+      <ion-label position="stacked">Monto</ion-label>
+      <ion-input [(ngModel)]="expense.amount" type="number" name="amount" required></ion-input>
     </ion-item>
 
     <ion-item class="ion-padding">
       <ion-label>Categoría</ion-label>
       <ion-select
-        [(ngModel)]="category"
+        [(ngModel)]="expense.category"
         name="category"
         placeholder="Seleccionar categoría">
         <ion-select-option value="Alimentación">Alimentación</ion-select-option>
@@ -35,13 +35,13 @@
       </ion-select>
     </ion-item>
 
-    <!-- <ion-item class="ion-padding">
+    <ion-item class="ion-padding">
       <ion-label>Fecha</ion-label>
       <ion-datetime-button datetime="datetime"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
           <ion-datetime 
-              [(ngModel)]="date"
+              [(ngModel)]="expense.date"
               [showDefaultButtons]="true"
               name="datetime" 
               id="datetime"
@@ -50,8 +50,8 @@
           </ion-datetime>
         </ng-template>
       </ion-modal>
-    </ion-item> -->
-    <ion-item class="ion-padding" id="fecha">
+    </ion-item>
+    <!-- <ion-item class="ion-padding" id="fecha">
       <ion-label>Fecha</ion-label>
             <ion-datetime
               [(ngModel)]="date"
@@ -60,8 +60,39 @@
               minuteValues="0,5,10,15,20,25,30,35,40,45,50,55,60"
               display-format="DD/MM/YYYY"
               ></ion-datetime>
-    </ion-item>
-    <ion-button slot="end" expand="full" type="submit">Guardar</ion-button>
+    </ion-item> -->
+     <ion-button expand="block" type="submit">
+      {{ isEditing ? 'Actualizar Gasto' : 'Agregar Gasto' }}
+    </ion-button>
   </form>
 
 </ion-content>
+
+<!-- <ion-item>
+  <ion-label position="stacked">Descripción</ion-label>
+  <ion-input [(ngModel)]="expense.description" name="description" required></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Monto</ion-label>
+  <ion-input type="number" [(ngModel)]="expense.amount" name="amount" required></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Fecha</ion-label>
+  <ion-datetime-button></ion-datetime-button>
+  <ion-modal>
+    <ng-template>
+      <ion-datetime [(ngModel)]="expense.date" name="date"></ion-datetime>
+    </ng-template>
+  </ion-modal>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked">Categoría</ion-label>
+  <ion-input [(ngModel)]="expense.category" name="category"></ion-input>
+</ion-item>
+
+<ion-button expand="block" type="submit">
+  {{ isEditing ? 'Actualizar Gasto' : 'Agregar Gasto' }}
+</ion-button> -->
