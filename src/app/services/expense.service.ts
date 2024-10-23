@@ -10,7 +10,7 @@ export class ExpenseService {
   private expensesSubject = new BehaviorSubject<Expense[]>([]);
   expenses$ = this.expensesSubject.asObservable();
   private totalSpentSubject = new BehaviorSubject<number>(0);
-  private budgetSubject = new BehaviorSubject<any>('');
+  private budgetSubject = new BehaviorSubject<number>(0);
   private availableBalanceSubject = new BehaviorSubject<number>(0);
 
   private budget: number = 0;

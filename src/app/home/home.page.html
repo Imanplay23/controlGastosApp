@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title slot="start">Lista de Gastos</ion-title> 
+    <ion-title slot="start">Resumen de gastos</ion-title>
     <ion-button (click)="onAddExpense()" slot="end" routerLink="/add-expense">
       Add expense
       <ion-icon size="large" name="add-circle-sharp"></ion-icon>
@@ -9,14 +9,14 @@
 </ion-header>
 
 <ion-content>
-    <app-expense-list></app-expense-list>
-    <ion-header>
+  <ion-item>
+    <app-expense-summary></app-expense-summary>
+  </ion-item>
+  <ion-header>
   <ion-toolbar>
-    <ion-title>Resumen de gastos</ion-title>
+    <ion-title slot="start">Lista de Gastos</ion-title> 
   </ion-toolbar>
 </ion-header>
-<ion-item>
-  <app-expense-summary></app-expense-summary>
-</ion-item>
+    <app-expense-list></app-expense-list>
 </ion-content>
 
