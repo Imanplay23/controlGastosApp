@@ -1,9 +1,75 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Estadisticas</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home" text="Volver"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Estadísticas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-<app-expense-summary></app-expense-summary>
+<ion-content class="stats-content">
+  <div class="summary-section">
+    <app-expense-summary></app-expense-summary>
+  </div>
+
+  <div class="stats-container">
+    <!-- Gráfico por Categorías -->
+    <ion-card class="chart-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="pie-chart-outline"></ion-icon>
+          Gastos por Categoría
+        </ion-card-title>
+        <ion-card-subtitle>Este mes</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="chart-placeholder">
+          <!-- Aquí irá tu gráfico -->
+          <div class="placeholder-text">
+            <ion-icon name="stats-chart"></ion-icon>
+            <span>Gráfico de categorías</span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Top Gastos -->
+    <ion-card class="expenses-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="trending-up-outline"></ion-icon>
+          Mayores Gastos
+        </ion-card-title>
+        <ion-card-subtitle>Este mes</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-icon name="restaurant" slot="start"></ion-icon>
+            <ion-label>
+              <h2>Alimentación</h2>
+              <p>30% del total</p>
+            </ion-label>
+            <ion-note slot="end" color="primary">$15,000</ion-note>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-icon name="home" slot="start"></ion-icon>
+            <ion-label>
+              <h2>Vivienda</h2>
+              <p>25% del total</p>
+            </ion-label>
+            <ion-note slot="end" color="primary">$12,500</ion-note>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-icon name="car" slot="start"></ion-icon>
+            <ion-label>
+              <h2>Transporte</h2>
+              <p>15% del total</p>
+            </ion-label>
+            <ion-note slot="end" color="primary">$7,500</ion-note>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

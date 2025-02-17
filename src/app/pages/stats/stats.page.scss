@@ -1,0 +1,138 @@
+ion-header {
+    ion-toolbar {
+      --background: #1e272e;
+      --color: white;
+  
+      ion-back-button {
+        --color: white;
+      }
+    }
+  }
+  
+  .stats-content {
+    --background: #2d3436;
+    
+    .summary-section {
+      padding: 16px;
+      
+      app-expense-summary {
+        display: block;
+        background: #1e272e;
+        border-radius: 12px;
+        padding: 16px;
+      }
+    }
+  
+    .stats-container {
+      padding: 0 16px 16px;
+  
+      .chart-card, .expenses-card {
+        background: #1e272e;
+        border-radius: 12px;
+        margin: 0 0 16px 0;
+        box-shadow: none;
+  
+        ion-card-header {
+          padding: 16px 16px 8px;
+  
+          ion-card-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            
+            ion-icon {
+              margin-right: 8px;
+              font-size: 20px;
+              color: #0984e3;
+            }
+          }
+  
+          ion-card-subtitle {
+            color: #a0a0a0;
+            font-size: 14px;
+            margin-top: 4px;
+          }
+        }
+  
+        ion-card-content {
+          padding: 8px 16px 16px;
+        }
+      }
+  
+      .chart-card {
+        .chart-placeholder {
+          height: 200px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px dashed #404c51;
+          border-radius: 8px;
+          margin-top: 8px;
+  
+          .placeholder-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #a0a0a0;
+  
+            ion-icon {
+              font-size: 32px;
+              margin-bottom: 8px;
+              color: #0984e3;
+            }
+  
+            span {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+  
+      .expenses-card {
+        ion-list {
+          background: transparent;
+          padding: 0;
+  
+          ion-item {
+            --background: transparent;
+            --background-hover: rgba(255, 255, 255, 0.05);
+            --padding-start: 0;
+            --padding-end: 0;
+            --border-radius: 8px;
+            margin-bottom: 8px;
+  
+            &:last-child {
+              margin-bottom: 0;
+            }
+  
+            ion-icon {
+              color: #0984e3;
+              margin-right: 12px;
+            }
+  
+            ion-label {
+              h2 {
+                font-size: 16px;
+                color: white;
+                margin: 0 0 4px 0;
+              }
+  
+              p {
+                font-size: 14px;
+                color: #a0a0a0;
+                margin: 0;
+              }
+            }
+  
+            ion-note {
+              font-size: 16px;
+              font-weight: 500;
+              --color: #0984e3;
+            }
+          }
+        }
+      }
+    }
+  }
