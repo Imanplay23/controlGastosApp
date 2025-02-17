@@ -1,50 +1,114 @@
-#container {
+.main-header {
+  ion-toolbar {
+    --background: #1e272e;
+    --color: white;
+    
+    ion-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
 
+    .menu-icon {
+      font-size: 24px;
+      color: white;
+    }
+  }
+}
+
+.custom-menu {
+  --width: 280px;
+  
+  ion-toolbar {
+    --background: #1e272e;
+    --color: white;
+  }
+
+  ion-content {
+    --background: #2d3436;
+
+    ion-list {
+      background: transparent;
+      padding-top: 12px;
+
+      ion-item {
+        --background: transparent;
+        --color: white;
+        margin-bottom: 8px;
+
+        ion-icon {
+          color: #74b9ff;
+          margin-right: 12px;
+        }
+
+        &:hover {
+          --background: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+}
+
+.home-content {
+  --background: #2d3436;
+  
+  .summary-container {
+    --background: transparent;
+    margin: 16px 0;
+  }
+
+  .section-header {
+    ion-toolbar {
+      --background: #1e272e;
+      --color: white;
+      border-radius: 8px 8px 0 0;
+      margin: 16px 16px 0 16px;
+    }
+  }
+
+  .add-expense-btn {
+    --background: #0984e3;
+    --background-hover: #74b9ff;
+    --border-radius: 8px;
+    margin-right: 8px;
+
+    ion-icon {
+      margin-left: 8px;
+    }
+  }
+}
+
+app-expense-summary {
+  width: 100%;
+  padding: 16px;
+  background: #1e272e;
+  border-radius: 12px;
+  margin: 0 16px;
+}
+
+app-expense-list {
+  padding: 0 16px;
+}
+
+#container {
   position: absolute;
   left: 0;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-}
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+  strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+  p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
+  }
 
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-ion-content {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-}
-
-ion-button {
- margin-right: 15px;
- padding: 5px;
- text-align: left;
-}
-
-app-expense-summary {
-  width: 100%;
-  padding: auto;
-}
-
-ion-title{ 
-  display: flex;
-  text-align: left;
-  justify-content: left;
-  margin-left: 0;
+  a {
+    text-decoration: none;
+  }
 }

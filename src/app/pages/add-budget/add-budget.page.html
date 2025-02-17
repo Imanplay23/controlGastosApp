@@ -1,17 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Establecer presupuesto</ion-title>
+<ion-header class="budget-header">
+  <ion-toolbar class="toolbar-container">
+    <ion-title class="page-title">Establecer presupuesto</ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="cancel()">Cancelar</ion-button>
+      <ion-button class="cancel-button" (click)="cancel()">Cancelar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item>
-    <ion-label position="floating">Nuevo Presupuesto</ion-label>
-    <ion-input [(ngModel)]="newBudget" type="number" placeholder="Ingrese el presupuesto"></ion-input>
-  </ion-item>
+<ion-content class="budget-content">
+  <div class="form-container">
+    <ion-item class="budget-input">
+      <ion-label position="floating">Nuevo Presupuesto</ion-label>
+      <ion-input 
+        [(ngModel)]="newBudget" 
+        type="number" 
+        placeholder="Ingrese el presupuesto"
+        class="input-field">
+      </ion-input>
+    </ion-item>
 
-  <ion-button expand="block" (click)="saveBudget()">Guardar Presupuesto</ion-button>
+    <ion-button 
+      expand="block" 
+      (click)="saveBudget()"
+      class="save-button">
+      Guardar Presupuesto
+    </ion-button>
+  </div>
 </ion-content>
