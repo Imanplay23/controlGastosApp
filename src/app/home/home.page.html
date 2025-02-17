@@ -1,6 +1,6 @@
 <ion-header class="main-header">
   <ion-toolbar>
-    <ion-title slot="start">Control de gastos</ion-title>
+    <ion-title slot="start">Inicio</ion-title>
     <ion-buttons slot="end">
       <ion-menu-toggle menu="main-menu">
         <ion-button>
@@ -19,11 +19,11 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item>
+      <!-- <ion-item routerLink="">
         <ion-icon name="home-outline" slot="start"></ion-icon>
         <ion-label>Inicio</ion-label>
-      </ion-item>
-      <ion-item>
+      </ion-item> -->
+      <ion-item (click)="addBudget()">
         <ion-icon name="wallet-outline" slot="start"></ion-icon>
         <ion-label>Presupuesto</ion-label>
       </ion-item>

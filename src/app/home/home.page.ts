@@ -54,4 +54,8 @@ export class HomePage implements OnInit {
       await alert.present();
     }
   }
+
+  addBudget(){
+    this.router.navigateByUrl('/add-budget')
+  }
 }

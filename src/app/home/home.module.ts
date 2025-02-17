@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { AddExpensePageModule } from '../pages/add-expense/add-expense.module';
 import { ExpenseSummaryModule } from '../components/expense-summary/expense-summary.module';
 import { ExpenseListPageModule } from "../pages/expense-list/expense-list.module";
+import { AddBudgetPageModule } from '../pages/add-budget/add-budget.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ExpenseListPageModule } from "../pages/expense-list/expense-list.module
     AddExpensePageModule,
     ExpenseSummaryModule,
     ExpenseListPageModule,
+    AddBudgetPageModule
 ],
   declarations: [HomePage]
 })
