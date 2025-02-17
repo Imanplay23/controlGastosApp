@@ -19,10 +19,6 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <!-- <ion-item routerLink="">
-        <ion-icon name="home-outline" slot="start"></ion-icon>
-        <ion-label>Inicio</ion-label>
-      </ion-item> -->
       <ion-item (click)="addBudget()">
         <ion-icon name="wallet-outline" slot="start"></ion-icon>
         <ion-label>Presupuesto</ion-label>
@@ -40,19 +36,27 @@
 </ion-menu>
 
 <ion-content id="main-content" class="home-content">
-  <!-- <ion-item class="summary-container">
-    <app-expense-summary></app-expense-summary>
-  </ion-item> -->
+  <div class="welcome-section">
+    <ion-card>
+      <ion-card-content>
+        <ion-icon name="wallet"></ion-icon>
+        <h1>¡Bienvenido!</h1>
+        <p>Mantén el control de tus gastos de manera fácil y efectiva</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
   
-  <ion-header class="section-header">
-    <ion-toolbar>
-      <ion-title slot="start">Lista de Gastos</ion-title> 
-      <ion-button (click)="onAddExpense()" slot="end" routerLink="/add-expense" class="add-expense-btn">
-        Agregar gasto
-        <ion-icon size="large" name="add-circle-sharp"></ion-icon>
-      </ion-button>
-    </ion-toolbar>
-  </ion-header>
+  <div class="expenses-section">
+    <ion-header class="section-header">
+      <ion-toolbar>
+        <ion-title slot="start">Lista de Gastos</ion-title> 
+        <ion-button (click)="onAddExpense()" slot="end" routerLink="/add-expense" class="add-expense-btn">
+          Agregar gasto
+          <ion-icon name="add-circle-sharp"></ion-icon>
+        </ion-button>
+      </ion-toolbar>
+    </ion-header>
 
-  <app-expense-list></app-expense-list>
+    <app-expense-list></app-expense-list>
+  </div>
 </ion-content>
