@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ExpenseSummaryComponent implements OnInit {
   availableBalance: number = 0;
   newBudget?: number;
 
-  constructor(private expenseService: ExpenseService) {}
+  constructor(private expenseService: ExpenseService,private router: Router) {}
 
   ngOnInit() {
    this.expenseService.budget$.subscribe(budget => {
@@ -35,5 +36,19 @@ updateAvailableBalance() {
       this.expenseService.setBudget(this.newBudget);
       this.newBudget = undefined;
     }
+  }
+
+  updateCalculations() {
+    this.totalSpent = this.expenseService.getAvailableBalance();
+    this.availableBalance = (this.budget || 0) - this.totalSpent;
+  }
+
+  editBudget() {
+    this.router.navigate(['/add-budget']);
+  }
+
+  deleteBudget() {
+    this.expenseService.clearBudget();
+    this.updateCalculations();
   }
 }

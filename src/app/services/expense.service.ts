@@ -72,10 +72,23 @@ export class ExpenseService {
     localStorage.setItem('expenses', JSON.stringify(this.expenses));
   }
 
-  setBudget(amount: number) {
-    this.budget = amount;
-    this.budgetSubject.next(this.budget);
-    localStorage.setItem('budget', amount.toString());
+  setBudget(newBudget: number) {
+    localStorage.setItem('budget', JSON.stringify(newBudget));
+    this.budgetSubject.next(newBudget);
+  }
+
+  getBudget(): number | null {
+    return this.budgetSubject.getValue();
+  }
+
+  clearBudget() {
+    this.budget = 0;
+    localStorage.removeItem('budget');
+  }
+
+  private getBudgetFromStorage(): number | null {
+    const budget = localStorage.getItem('budget');
+    return budget ? JSON.parse(budget) : null;
   }
 
   getAvailableBalance(): number {

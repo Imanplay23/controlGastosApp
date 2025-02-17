@@ -42,18 +42,24 @@ export class AddExpensePage implements OnInit {
     await alert.present();
   }
 
-  addExpense() {
-    if (this.isEditing) {
-      this.expenseService.updateExpense(this.expense);
+  async addExpense() {
+    if (!this.expenseService.getBudget()) {
+      const alert = await this.alertController.create({
+        header: 'Presupuesto Requerido',
+        message: 'Debes agregar un presupuesto antes de añadir un gasto.',
+        buttons: [
+          {
+            text: 'Establecer Presupuesto',
+            handler: () => {
+              this.router.navigate(['/add-budget']);
+            },
+          },
+        ],
+      });
+  
+      await alert.present();
     } else {
-      this.expense.id = this.generateUniqueId();
-      this.expenseService.addExpense(this.expense);
+      
     }
-    
-    this.router.navigate(['/home']);
-  }
-
-  generateUniqueId(): string {
-    return Math.random().toString(36).substr(2, 9);
-  }
+}
 }

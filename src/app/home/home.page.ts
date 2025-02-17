@@ -25,28 +25,33 @@ export class HomePage implements OnInit {
 
   async onAddExpense() {
     if (!this.budget || this.budget <= 0) {
-      await this.showNoBudgetAlert();
+      await this.checkBudget();
       return;
     }
 
     this.router.navigateByUrl('/add-expense');
   }
 
-  async showNoBudgetAlert() {
-    const alert = await this.alertController.create({
-      header: 'Presupuesto no establecido',
-      message: 'Debes establecer un presupuesto antes de agregar gastos.',
-      buttons: [
-        {
-          text: 'Establecer Presupuesto',
-          handler: () => {
-            this.router.navigateByUrl('/home');
+  async checkBudget() {
+    if (!this.expenseService.getBudget()) {
+      const alert = await this.alertController.create({
+        header: 'Presupuesto Requerido',
+        message: 'Debes establecer un presupuesto antes de agregar gastos.',
+        buttons: [
+          {
+            text: 'Establecer Presupuesto',
+            handler: () => {
+              this.router.navigate(['/add-budget']);
+            },
           },
-        },
-      ],
-      backdropDismiss: false
-    });
+          {
+            text: 'Continuar',
+            role: 'cancel',
+          },
+        ],
+      });
 
-    await alert.present();
+      await alert.present();
+    }
   }
 }
