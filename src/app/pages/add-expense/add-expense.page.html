@@ -1,98 +1,79 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="/home" text="Volver"></ion-back-button>
     </ion-buttons>
     <ion-title>Agregar Gasto</ion-title>
-    
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form (submit)="addExpense()">
-    <ion-item class="ion-padding">
-      <ion-label position="stacked">Descripción</ion-label>
-      <ion-input [(ngModel)]="expense.description" name="description" required></ion-input>
-    </ion-item>
+<ion-content class="add-expense-content">
+  <form (submit)="addExpense()" class="expense-form">
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-input 
+            [(ngModel)]="expense.description" 
+            name="description" 
+            required
+            placeholder="¿En qué gastaste?">
+          </ion-input>
+        </ion-item>
 
-    <ion-item class="ion-padding">
-      <ion-label position="stacked">Monto</ion-label>
-      <ion-input [(ngModel)]="expense.amount" type="number" name="amount" required></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">Monto</ion-label>
+          <ion-input 
+            [(ngModel)]="expense.amount" 
+            type="number" 
+            name="amount" 
+            required
+            placeholder="0.00">
+          </ion-input>
+        </ion-item>
 
-    <ion-item class="ion-padding">
-      <ion-label>Categoría</ion-label>
-      <ion-select
-        [(ngModel)]="expense.category"
-        name="category"
-        placeholder="Seleccionar categoría">
-        <ion-select-option value="Alimentación">Alimentación</ion-select-option>
-        <ion-select-option value="Alimentación">Estudios</ion-select-option>
-        <ion-select-option value="Transporte">Transporte</ion-select-option>
-        <ion-select-option value="Vivienda">Vivienda</ion-select-option>
-        <ion-select-option value="Ocio">Ocio</ion-select-option>
-        <ion-select-option value="Otros">Otros</ion-select-option>
-      </ion-select>
-    </ion-item>
+        <ion-item>
+          <ion-label position="floating">Categoría</ion-label>
+          <ion-select
+            [(ngModel)]="expense.category"
+            name="category"
+            placeholder="Seleccionar categoría"
+            interface="action-sheet">
+            <ion-select-option value="Alimentación">Alimentación</ion-select-option>
+            <ion-select-option value="Estudios">Estudios</ion-select-option>
+            <ion-select-option value="Transporte">Transporte</ion-select-option>
+            <ion-select-option value="Vivienda">Vivienda</ion-select-option>
+            <ion-select-option value="Ocio">Ocio</ion-select-option>
+            <ion-select-option value="Otros">Otros</ion-select-option>
+          </ion-select>
+        </ion-item>
 
-    <ion-item class="ion-padding">
-      <ion-label>Fecha</ion-label>
-      <ion-datetime-button datetime="datetime"></ion-datetime-button>
-      <ion-modal [keepContentsMounted]="true">
-        <ng-template>
-          <ion-datetime 
-              [(ngModel)]="expense.date"
-              [showDefaultButtons]="true"
-              name="datetime" 
-              id="datetime"
-              minuteValues="0,,10,20,30,40,50,60"
-              display-format="DD/MM/YYYY">
-          </ion-datetime>
-        </ng-template>
-      </ion-modal>
-    </ion-item>
-    <!-- <ion-item class="ion-padding" id="fecha">
-      <ion-label>Fecha</ion-label>
-            <ion-datetime
-              [(ngModel)]="date"
-              name="datetime" 
-              id="datetime"
-              minuteValues="0,5,10,15,20,25,30,35,40,45,50,55,60"
-              display-format="DD/MM/YYYY"
-              ></ion-datetime>
-    </ion-item> -->
-     <ion-button expand="block" type="submit">
+        <ion-item>
+          <ion-label position="floating">Fecha y Hora</ion-label>
+          <ion-datetime-button datetime="datetime"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime 
+                [(ngModel)]="expense.date"
+                [showDefaultButtons]="true"
+                name="datetime" 
+                id="datetime"
+                locale="es-ES"
+                [preferWheel]="true"
+                minuteValues="0,15,30,45"
+                presentation="date-time"
+                cancelText="Cancelar"
+                doneText="Aceptar">
+              </ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button expand="block" type="submit" class="submit-button">
+      <ion-icon name="save-outline" slot="start"></ion-icon>
       {{ isEditing ? 'Actualizar Gasto' : 'Agregar Gasto' }}
     </ion-button>
   </form>
-
 </ion-content>
-
-<!-- <ion-item>
-  <ion-label position="stacked">Descripción</ion-label>
-  <ion-input [(ngModel)]="expense.description" name="description" required></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Monto</ion-label>
-  <ion-input type="number" [(ngModel)]="expense.amount" name="amount" required></ion-input>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Fecha</ion-label>
-  <ion-datetime-button></ion-datetime-button>
-  <ion-modal>
-    <ng-template>
-      <ion-datetime [(ngModel)]="expense.date" name="date"></ion-datetime>
-    </ng-template>
-  </ion-modal>
-</ion-item>
-
-<ion-item>
-  <ion-label position="stacked">Categoría</ion-label>
-  <ion-input [(ngModel)]="expense.category" name="category"></ion-input>
-</ion-item>
-
-<ion-button expand="block" type="submit">
-  {{ isEditing ? 'Actualizar Gasto' : 'Agregar Gasto' }}
-</ion-button> -->

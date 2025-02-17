@@ -1,25 +1,97 @@
-ion-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
+ion-header {
+  ion-toolbar {
+    --background: #1e272e;
+    --color: white;
+
+    ion-back-button {
+      --color: white;
+    }
+  }
+}
+
+.add-expense-content {
+  --background: #2d3436;
+  
+  .expense-form {
+    padding: 16px;
+    
+    ion-card {
+      background: #1e272e;
+      border-radius: 12px;
+      margin: 0 0 20px 0;
+      
+      ion-card-content {
+        padding: 16px;
+      }
+
+      ion-item {
+        --background: transparent;
+        --border-color: rgba(255, 255, 255, 0.1);
+        --highlight-height: 1px;
+        --highlight-color-focused: #0984e3;
+        --color: white;
+        --padding-start: 0;
+        --inner-padding-end: 0;
+        margin-bottom: 16px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        ion-label {
+          --color: #a0a0a0;
+          margin-bottom: 8px;
+        }
+
+        ion-input {
+          --color: white;
+          --placeholder-color: #666;
+          font-size: 1rem;
+        }
+
+        ion-select {
+          --placeholder-color: #666;
+          width: 100%;
+          color: white;
+        }
+
+        ion-datetime-button {
+          --background: transparent;
+          --background-hover: #3d4852;
+          color: white;
+          margin-top: 8px;
+          width: 100%;
+        }
+      }
+    }
+
+    .submit-button {
+      --background: #0984e3;
+      --background-hover: #074e83;
+      --border-radius: 8px;
+      --padding-top: 20px;
+      --padding-bottom: 20px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin-top: 20px;
+
+      ion-icon {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+ion-modal ion-datetime {
+  --background: #1e272e;
+  --background-rgb: 30, 39, 46;
+  color: white;
+  
+  .calendar-day {
+    color: white;
   }
   
-  form {
-    width: 100%;
+  .time-body {
+    background: #2d3436;
   }
-  
-  ion-item {
-    margin-bottom: 5px;
-  }
-  
-  ion-button {
-    margin-top: 5px;
-  }
-  
-  #fecha {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+}
