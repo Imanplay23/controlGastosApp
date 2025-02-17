@@ -58,4 +58,8 @@ export class HomePage implements OnInit {
   addBudget(){
     this.router.navigateByUrl('/add-budget')
   }
+
+  goToStats(){
+    this.router.navigateByUrl('/stats')
+  }
 }
