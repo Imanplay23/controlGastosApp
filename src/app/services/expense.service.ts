@@ -39,14 +39,13 @@ export class ExpenseService {
     }
   }
 
-  // private calculateTotals() {
-  //   const totalSpent = this.expenses.reduce((sum, expense) => sum + expense.amount, 0);
-  //   const budget = this.budgetSubject.value;
-  //   const availableBalance = budget - totalSpent;
-
-  //   this.totalSpentSubject.next(totalSpent);
-  //   this.availableBalanceSubject.next(availableBalance);
-  // }
+  private calculateTotals() {
+    const totalSpent = this.expenses.reduce((sum, expense) => sum + expense.amount, 0);
+    const availableBalance = this.budget - totalSpent;
+  
+    this.totalSpentSubject.next(totalSpent);
+    this.availableBalanceSubject.next(availableBalance);
+  }
 
   getExpenses() {
     return this.expenses;
@@ -56,13 +55,16 @@ export class ExpenseService {
     this.expenses.push(expense);
     this.expensesSubject.next(this.expenses);
     localStorage.setItem('expenses', JSON.stringify(this.expenses));
+    this.calculateTotals();
   }
 
   updateExpense(updatedExpense: Expense) {
     const index = this.expenses.findIndex(exp => exp.id === updatedExpense.id);
     if (index !== -1) {
       this.expenses[index] = updatedExpense;
-      this.expensesSubject.next(this.expenses);
+      this.expensesSubject.next([...this.expenses]);
+      localStorage.setItem('expenses', JSON.stringify(this.expenses));
+      this.calculateTotals();
     }
   }
 
@@ -70,6 +72,7 @@ export class ExpenseService {
     this.expenses = this.expenses.filter(exp => exp.id !== id);
     this.expensesSubject.next(this.expenses);
     localStorage.setItem('expenses', JSON.stringify(this.expenses));
+    this.calculateTotals();
   }
 
   setBudget(newBudget: number) {

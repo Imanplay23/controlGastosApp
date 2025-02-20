@@ -11,7 +11,7 @@ import { ExpenseService } from 'src/app/services/expense.service';
 })
 export class AddExpensePage implements OnInit {
   description: string = '';
-  amount: number | null = null;
+  amount?: number;
   date: string = '';
   category: string = '';
   expense: Expense = { id: '', description: '', amount: 0, date: new Date().toISOString(), category: '' };
@@ -59,7 +59,46 @@ export class AddExpensePage implements OnInit {
   
       await alert.present();
     } else {
-      
+      if (!this.validateForm()) {
+        await this.presentAlert();
+        return;
+      }
+
+      if (this.isEditing) {
+        this.updateExistingExpense();
+      } else {
+        this.createNewExpense();
+      }
+
+      this.router.navigate(['/home']);
     }
-}
+  }
+
+  private validateForm(): boolean {
+    return !!this.expense.description && 
+           !!this.expense.amount && 
+           !!this.expense.category && 
+           !!this.expense.date;
+  }
+
+  private createNewExpense() {
+    const newExpense: Expense = {
+      ...this.expense,
+      id: this.generateUniqueId(),
+      date: new Date(this.expense.date).toISOString()
+    };
+    this.expenseService.addExpense(newExpense);
+  }
+
+  private updateExistingExpense() {
+    const updatedExpense: Expense = {
+      ...this.expense,
+      date: new Date(this.expense.date).toISOString()
+    };
+    this.expenseService.updateExpense(updatedExpense);
+  }
+
+  private generateUniqueId(): string {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+  }
 }
