@@ -35,3 +35,16 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+
+/* Variables globales y utilidades */
+:root {
+    --safe-area-top: env(safe-area-inset-top);
+    --safe-area-bottom: env(safe-area-inset-bottom);
+    --app-dark-bg: #2d3436;
+    --app-header-bg: #1e272e;
+    --app-primary: #0984e3;
+    --app-text-light: #ffffff;
+    --app-text-gray: #a0a0a0;
+  }
+  

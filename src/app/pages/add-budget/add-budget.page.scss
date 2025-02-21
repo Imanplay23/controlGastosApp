@@ -1,31 +1,33 @@
-.budget-header {
-  .toolbar-container {
-    --background: #2c3e50;
-    
-    .page-title {
-      color: #ffffff;
-      font-size: 1.2rem;
-      font-weight: 600;
+ion-header {
+  &::after {
+    display: none;
+  }
+
+  ion-toolbar {
+    --background: var(--app-header-bg);
+    --color: var(--app-text-light);
+    --padding-top: calc(var(--safe-area-top) + 8px);
+    --padding-bottom: 8px;
+    --min-height: 56px;
+
+    ion-back-button {
+      --color: var(--app-text-light);
     }
 
-    .cancel-button {
-      --color: #ffffff;
-      font-weight: 500;
-      
-      &:hover {
-        --color: #e74c3c;
-      }
+    ion-title {
+      font-weight: 600;
+      font-size: 1.2rem;
     }
   }
 }
 
 .budget-content {
-  --background: #353434;
+  --background: var(--app-dark-bg);
+  --padding-top: 0;
+  --padding-bottom: calc(var(--safe-area-bottom) + 16px);
 
   .form-container {
-    padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
+    padding: 20px 20px calc(var(--safe-area-bottom) + 20px);
     
     .budget-input {
       --background: #ffffff;
@@ -48,19 +50,7 @@
     }
 
     .save-button {
-      --background: #2ecc71;
-      --background-hover: #27ae60;
-      --background-activated: #27ae60;
-      --border-radius: 8px;
-      --padding-top: 20px;
-      --padding-bottom: 20px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-top: 16px;
-      
-      &:hover {
-        --background: #27ae60;
-      }
+      margin-bottom: var(--safe-area-bottom);
     }
   }
 }

@@ -1,30 +1,38 @@
-.main-header {
+ion-header {
+  &::after {
+    display: none;
+  }
+
   ion-toolbar {
-    --background: #1e272e;
-    --color: white;
-    
+    --background: var(--app-header-bg);
+    --color: var(--app-text-light);
+    --padding-top: calc(var(--safe-area-top) + 8px);
+    --padding-bottom: 8px;
+    --min-height: 56px;
+
+    ion-back-button {
+      --color: var(--app-text-light);
+    }
+
     ion-title {
       font-weight: 600;
       font-size: 1.2rem;
-    }
-
-    .menu-icon {
-      font-size: 24px;
-      color: white;
     }
   }
 }
 
 .custom-menu {
   --width: 280px;
-  
+
   ion-toolbar {
     --background: #1e272e;
     --color: white;
   }
 
   ion-content {
-    --background: #2d3436;
+    --padding-top: calc(var(--safe-area-top) + 16px);
+    --padding-bottom: calc(var(--safe-area-bottom) + 16px);
+    --background: var(--app-dark-bg);
 
     ion-list {
       background: transparent;
@@ -49,17 +57,20 @@
 }
 
 .home-content {
-  --background: #2d3436;
+  --background: var(--app-dark-bg);
+  --padding-top: 0;
+  --padding-bottom: calc(var(--safe-area-bottom) + 16px);
 
   .welcome-section {
-    padding: 16px;
+    padding: 16px 16px calc(var(--safe-area-top) + 16px);
+    margin-top: var(--safe-area-top);
 
     ion-card {
       background: #1e272e;
       border-radius: 16px;
       margin: 0;
       box-shadow: none;
-      
+
       ion-card-content {
         display: flex;
         flex-direction: column;
@@ -86,79 +97,93 @@
           font-size: 15px;
           line-height: 1.4;
         }
-      }
-    }
-  }
+        .expenses-section {
+          padding: 0 16px;
 
-  .expenses-section {
-    padding: 0 16px;
-
-    .expenses-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      
-      h2 {
-        color: white;
-        font-size: 18px;
-        margin: 0;
-        font-weight: 500;
-      }
-
-      .add-expense-btn {
-        --background: #0984e3;
-        --background-hover: #74b9ff;
-        --border-radius: 20px;
-        --padding-start: 12px;
-        --padding-end: 12px;
-        height: 36px;
-        margin: 0;
-
-        ion-icon {
-          font-size: 18px;
-          margin-left: 4px;
-        }
-      }
-    }
-  }
-}
-
-app-expense-list {
-  display: block;
-  margin-bottom: 16px;
-
-  ::ng-deep {
-    ion-list {
-      background: transparent;
-      padding: 0;
-
-      ion-item {
-        --background: #1e272e;
-        --background-hover: #2c3e50;
-        --border-radius: 8px;
-        margin-bottom: 8px;
-        --padding-start: 12px;
-        --padding-end: 12px;
-        --min-height: 60px;
-
-        &:last-child {
-          margin-bottom: 0;
-        }
-
-        ion-label {
-          margin: 12px 0;
-          
-          h2 {
-            font-size: 16px;
-            color: white;
-            margin: 0 0 4px 0;
+          .section-header {
+            ion-toolbar {
+              --padding-top: 0;
+              --background: transparent;
+            }
           }
 
-          p {
-            font-size: 14px;
-            color: #a0a0a0;
+          app-expense-list {
+            margin-bottom: calc(var(--safe-area-bottom) + 16px);
+          }
+        }
+      }
+
+      .expenses-section {
+        padding: 0 16px;
+
+        .expenses-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 12px;
+
+          h2 {
+            color: white;
+            font-size: 18px;
             margin: 0;
+            font-weight: 500;
+          }
+
+          .add-expense-btn {
+            --background: #0984e3;
+            --background-hover: #74b9ff;
+            --border-radius: 20px;
+            --padding-start: 12px;
+            --padding-end: 12px;
+            height: 36px;
+            margin: 0;
+
+            ion-icon {
+              font-size: 18px;
+              margin-left: 4px;
+            }
+          }
+        }
+      }
+    }
+
+    app-expense-list {
+      display: block;
+      margin-bottom: 16px;
+
+      ::ng-deep {
+        ion-list {
+          background: transparent;
+          padding: 0;
+
+          ion-item {
+            --background: #1e272e;
+            --background-hover: #2c3e50;
+            --border-radius: 8px;
+            margin-bottom: 8px;
+            --padding-start: 12px;
+            --padding-end: 12px;
+            --min-height: 60px;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            ion-label {
+              margin: 12px 0;
+
+              h2 {
+                font-size: 16px;
+                color: white;
+                margin: 0 0 4px 0;
+              }
+
+              p {
+                font-size: 14px;
+                color: #a0a0a0;
+                margin: 0;
+              }
+            }
           }
         }
       }
