@@ -20,7 +20,7 @@ export class ExpenseListPage implements OnInit {
   }
 
   deleteExpense(id: string) {
-    // this.expenseService.deleteExpense(id);
+    this.expenseService.deleteExpense(id);
     this.expenses = this.expenseService.getExpenses();
   }
 
