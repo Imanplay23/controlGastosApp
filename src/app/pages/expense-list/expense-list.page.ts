@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseService } from 'src/app/services/expense.service';
-import { Router } from '@angular/router';
 import { Expense } from 'src/app/interfaces/expense';
+import { NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-expense-list',
-  templateUrl: './expense-list.page.html',
-  styleUrls: ['./expense-list.page.scss'],
+    selector: 'app-expense-list',
+    templateUrl: './expense-list.page.html',
+    styleUrls: ['./expense-list.page.scss'],
+    standalone: false,
 })
 export class ExpenseListPage implements OnInit {
   expenses: any[] = [];
 
-  constructor(private expenseService: ExpenseService, private router: Router) {}
+  constructor(
+    private expenseService: ExpenseService, 
+    private navCtrl: NavController) {}
 
   ngOnInit() {
     this.expenseService.expenses$.subscribe(expenses => {
@@ -25,6 +28,6 @@ export class ExpenseListPage implements OnInit {
   }
 
   editExpense(expense: Expense) {
-    this.router.navigate(['/add-expense', { expenseToEdit: JSON.stringify(expense) }]);
+    this.navCtrl.navigateForward(['/add-expense', { expenseToEdit: JSON.stringify(expense) }]);
   }
 }

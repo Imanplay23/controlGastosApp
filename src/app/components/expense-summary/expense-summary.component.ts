@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
-  selector: 'app-expense-summary',
-  templateUrl: './expense-summary.component.html',
-  styleUrls: ['./expense-summary.component.scss'],
+    selector: 'app-expense-summary',
+    templateUrl: './expense-summary.component.html',
+    styleUrls: ['./expense-summary.component.scss'],
+    standalone: false
 })
 export class ExpenseSummaryComponent implements OnInit {
   totalSpent: number = 0;

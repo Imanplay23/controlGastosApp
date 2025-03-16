@@ -3,9 +3,10 @@ import { ExpenseService } from 'src/app/services/expense.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-budget',
-  templateUrl: './add-budget.page.html',
-  styleUrls: ['./add-budget.page.scss'],
+    selector: 'app-add-budget',
+    templateUrl: './add-budget.page.html',
+    styleUrls: ['./add-budget.page.scss'],
+    standalone: false
 })
 export class AddBudgetPage {
   newBudget: number | null = null;

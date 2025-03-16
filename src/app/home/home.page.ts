@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ExpenseService } from '../services/expense.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+    selector: 'app-home',
+    templateUrl: './home.page.html',
+    styleUrls: ['./home.page.scss'],
+    standalone: false
 })
 export class HomePage implements OnInit {
   budget: number | null = null;
 
   constructor(
-    private router: Router,
+    private navCtrl : NavController,
     private expenseService: ExpenseService,
     private alertController: AlertController
   ) {}
@@ -29,7 +30,7 @@ export class HomePage implements OnInit {
       return;
     }
 
-    this.router.navigateByUrl('/add-expense');
+    this.navCtrl.navigateForward('/add-expense');
   }
 
   async checkBudget() {
@@ -41,7 +42,7 @@ export class HomePage implements OnInit {
           {
             text: 'Establecer Presupuesto',
             handler: () => {
-              this.router.navigate(['/add-budget']);
+              this.navCtrl.navigateForward(['/add-budget']);
             },
           },
           {
@@ -56,10 +57,10 @@ export class HomePage implements OnInit {
   }
 
   addBudget(){
-    this.router.navigateByUrl('/add-budget')
+    this.navCtrl.navigateForward('/add-budget')
   }
 
   goToStats(){
-    this.router.navigateByUrl('/stats')
+    this.navCtrl.navigateForward('/stats')
   }
 }

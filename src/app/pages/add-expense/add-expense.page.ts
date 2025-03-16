@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Expense } from 'src/app/interfaces/expense';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
-  selector: 'app-add-expense',
-  templateUrl: './add-expense.page.html',
-  styleUrls: ['./add-expense.page.scss'],
+    selector: 'app-add-expense',
+    templateUrl: './add-expense.page.html',
+    styleUrls: ['./add-expense.page.scss'],
+    standalone: false
 })
 export class AddExpensePage implements OnInit {
   description: string = '';
@@ -18,7 +19,7 @@ export class AddExpensePage implements OnInit {
   isEditing: boolean = false;
 
   constructor(
-    private router: Router, 
+    private navCtrl: NavController, 
     private route: ActivatedRoute,
     private expenseService: ExpenseService,
     private alertController: AlertController
@@ -51,7 +52,7 @@ export class AddExpensePage implements OnInit {
           {
             text: 'Establecer Presupuesto',
             handler: () => {
-              this.router.navigate(['/add-budget']);
+              this.navCtrl.navigateForward(['/add-budget']);
             },
           },
         ],
@@ -70,7 +71,7 @@ export class AddExpensePage implements OnInit {
         this.createNewExpense();
       }
 
-      this.router.navigate(['/home']);
+      this.navCtrl.navigateForward(['/home']);
     }
   }
 
